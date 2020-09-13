@@ -41,7 +41,8 @@ class _DetailScreenState extends State<DetailScreen> {
                       height: 280,
                       child: FadeInImage.assetNetwork(
                         placeholder: Assets.images.loading.path,
-                        image: pokemon.data.sprites.official,
+                        image: pokemon.data.sprites.frontDefault,
+                        fit: BoxFit.contain,
                       ),
                     ),
                     SizedBox(height: 20),
