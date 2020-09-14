@@ -56,35 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (context, loading, child) {
                 return Column(
                   children: [
-                    ValueListenableBuilder<Location>(
-                      valueListenable: _location,
-                      builder: (context, location, child) {
-                        return location != null
-                            ? Align(
-                                alignment: Alignment.centerLeft,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 16,
-                                    top: 16,
-                                    bottom: 16,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Welcome trainer from:'),
-                                      SizedBox(height: 4),
-                                      Text(
-                                        '${location.countryName} - ${location.city}',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              )
-                            : SizedBox();
-                      },
-                    ),
+                    _valueNotifier(),
                     Expanded(
                       child: GridView.builder(
                         controller: _scrollController,
@@ -152,6 +124,68 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         },
       ),
+    );
+  }
+
+  Widget _futureBuilder() {
+    return FutureBuilder<Location>(
+      future: _fetchLocation(),
+      builder: (context, snapshot) {
+        return snapshot.hasData
+            ? Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    top: 16,
+                    bottom: 16,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Welcome trainer from:'),
+                      SizedBox(height: 4),
+                      Text(
+                        '${snapshot.data.countryName} - ${snapshot.data.city}',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            : SizedBox();
+      },
+    );
+  }
+
+  Widget _valueNotifier() {
+    return ValueListenableBuilder<Location>(
+      valueListenable: _location,
+      builder: (context, location, child) {
+        return location != null
+            ? Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    top: 16,
+                    bottom: 16,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Welcome trainer from:'),
+                      SizedBox(height: 4),
+                      Text(
+                        '${location.countryName} - ${location.city}',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            : SizedBox();
+      },
     );
   }
 
