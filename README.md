@@ -1,5 +1,8 @@
 <img src="https://raw.githubusercontent.com/mkiisoft/Pokemon-List/master/assets/images/banner.png"/>
 
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat&logo=github)
+![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)
+
 ## Flutter - Pokemon List
 
 |               List                 |              Pokedex               |
